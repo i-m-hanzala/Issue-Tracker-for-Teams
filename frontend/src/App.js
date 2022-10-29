@@ -3,6 +3,7 @@ import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import Header from './components/Header';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route element={<Login />} path="login"/>
         <Route element={<Header />} path="header"/>
         <Route element={<Signup />} path="signup"/>
+        <Route element={<NotFound/>} path="*"/>
       </Routes>
       
       </BrowserRouter>

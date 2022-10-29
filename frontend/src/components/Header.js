@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const NavBar = () => {
+const Navbar = () => {
   return (
     <>
   {/* Navbar */}
@@ -40,22 +40,9 @@ const NavBar = () => {
               Login</NavLink>
           </li>
           <li className="nav-item">
-          <NavLink className="nav-link" to="/event">
-              Event Handling</NavLink>
-          </li>
-          <li className="nav-item">
-          <NavLink className="nav-link" to="/todo">
-              Todo App</NavLink>
-          </li>
-          <li className="nav-item">
           <NavLink className="nav-link" to="/signup">
               Sign-up</NavLink>
           </li>
-          <li className="nav-item">
-          <NavLink className="nav-link" to="/manageuser">
-              Manage User</NavLink>
-          </li>
-
         </ul>
         {/* Icons */}
         <ul className="navbar-nav d-flex flex-row me-1">
@@ -89,4 +76,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar
+export default Navbar
