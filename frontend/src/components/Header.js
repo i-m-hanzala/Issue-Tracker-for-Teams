@@ -6,7 +6,7 @@ const Navbar = () => {
     <>
   {/* Navbar */}
   <nav
-    className="navbar navbar-expand-lg navbar-dark "
+    className="navbar navbar-expand-md navbar-dark "
     style={{ backgroundColor: "#2b0c36" }}
   >
     {/* Container wrapper */}
@@ -36,7 +36,7 @@ const Navbar = () => {
               Home</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/loginpage">
+            <NavLink className="nav-link" to="/login">
               Login</NavLink>
           </li>
           <li className="nav-item">

@@ -67,4 +67,23 @@ router.put('/update/:id', (req, res) => {
     });
 })
 
+router.post('/authenticate', (req, res) => {
+
+    const formdata = req.body;
+
+    Model.findOne({email : formdata.email, password : formdata.password})
+    .then((result) => {
+        if(result){
+            res.status(200).json(result);
+        }else{
+            res.status(401).json({status : 'login failed'});
+        }
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+
+})
+
 module.exports = router;
