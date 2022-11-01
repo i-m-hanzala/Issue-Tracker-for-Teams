@@ -20,7 +20,7 @@ const Addissue= () => {
       // 4. data format - json
 
       // returns promise
-      const response = await fetch('http://localhost:5000/addissue/add', {
+      const response = await fetch('http://localhost:5000/issue/add', {
         method: 'POST',
         body : JSON.stringify(formdata),
         headers: {
@@ -59,7 +59,9 @@ const Addissue= () => {
       <div className="card">
         <div className="card-body">
           <h3 className="text-center">Signup Here</h3>
-          <Formik initialValues={{ title: "", type: "", assignedby: "", assignedto:"" , status:"" , createdby:"" }} onSubmit={userSubmit} validationSchema={myValidation}>
+          <Formik initialValues={{ title: "", type: "", assignedby: "", assignedto:"" , createdAt:new Date() }} onSubmit={userSubmit} 
+        //   validationSchema={myValidation}
+          >
             {({ values, handleChange, handleSubmit, isSubmitting, errors }) => (
               <form onSubmit={handleSubmit}>
                 <label>title</label>
@@ -75,12 +77,7 @@ const Addissue= () => {
                 <label>assignedto</label>
                 <input type="text" className="form-control" name="assignedto" value={values.assignedto} onChange={handleChange} />
 
-                <label>status</label>
-                <input type="text" className="form-control" name="status" value={values.status} onChange={handleChange} />
-
-                <label>createdby</label>
-                <input type="text" className="form-control" name="createdby" value={values.createdby} onChange={handleChange} />
-
+               
                 <button disabled={isSubmitting} type="submit" className="btn btn-primary mt-5">
                   {isSubmitting ? <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : ""}
                   &nbsp;&nbsp;Submit
@@ -94,4 +91,4 @@ const Addissue= () => {
   )
 }
 
-export default Signup
+export default Addissue;

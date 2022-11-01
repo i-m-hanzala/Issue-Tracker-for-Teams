@@ -2,6 +2,7 @@
 const express = require('express');
 
 const userRouter = require('./routers/userRouter');
+const issueRouter = require('./routers/issueRouter');
 const cors = require('cors');
 
 const app = express();
@@ -18,7 +19,7 @@ app.use(cors( {
 } ));
 
 app.use('/user', userRouter);
-app.use('/user', userRouter);
+app.use('/issue', issueRouter);
 
 
 // processing the request
