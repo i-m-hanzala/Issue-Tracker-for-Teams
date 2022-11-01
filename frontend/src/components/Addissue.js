@@ -4,10 +4,7 @@ import * as Yup from "yup";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 
-const Signup = () => {
-  
-  
-  
+const Addissue= () => {
   
   // step-1 : create function for submission
   const userSubmit = async (formdata, { resetForm, setSubmitting }) => {
@@ -23,7 +20,7 @@ const Signup = () => {
       // 4. data format - json
 
       // returns promise
-      const response = await fetch('http://localhost:5000/user/add', {
+      const response = await fetch('http://localhost:5000/issue/add', {
         method: 'POST',
         body : JSON.stringify(formdata),
         headers: {
@@ -62,19 +59,25 @@ const Signup = () => {
       <div className="card">
         <div className="card-body">
           <h3 className="text-center">Signup Here</h3>
-          <Formik initialValues={{ username: "", email: "", password: "" }} onSubmit={userSubmit} validationSchema={myValidation}>
+          <Formik initialValues={{ title: "", type: "", assignedby: "", assignedto:"" , createdAt:new Date() }} onSubmit={userSubmit} 
+        //   validationSchema={myValidation}
+          >
             {({ values, handleChange, handleSubmit, isSubmitting, errors }) => (
               <form onSubmit={handleSubmit}>
-                <label>Username</label>
-                <input type="text" className="form-control" name="username" value={values.username} onChange={handleChange} />
+                <label>title</label>
+                <input type="text" className="form-control" name="title" value={values.title} onChange={handleChange} />
                 <p className="mb-3 message">{errors.username}</p>
 
-                <label>Email</label>
-                <input type="text" className="form-control" name="email" value={values.email} onChange={handleChange} />
+                <label>type</label>
+                <input type="text" className="form-control" name="type" value={values.type} onChange={handleChange} />
 
-                <label>Password</label>
-                <input type="password" className="form-control" name="password" value={values.password} onChange={handleChange} />
+                <label>assignedBy</label>
+                <input type="text" className="form-control" name="assignedby" value={values.assignedby} onChange={handleChange} />
 
+                <label>assignedto</label>
+                <input type="text" className="form-control" name="assignedto" value={values.assignedto} onChange={handleChange} />
+
+               
                 <button disabled={isSubmitting} type="submit" className="btn btn-primary mt-5">
                   {isSubmitting ? <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : ""}
                   &nbsp;&nbsp;Submit
@@ -88,4 +91,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default Addissue;

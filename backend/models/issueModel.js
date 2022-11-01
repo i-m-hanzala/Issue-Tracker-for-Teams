@@ -5,7 +5,8 @@ const myschema = new Schema({
     type : String,
     assignedBy : String,
     assignedTo : String,
-    status : String,
+    status : {type : String, default: 'pending'},
+    closed : {type : Boolean, default: false},
     createdAt: Date
 });
 

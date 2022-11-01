@@ -1,60 +1,81 @@
-import React from 'react'
+import { Formik } from "formik";
+import React from "react";
+import * as Yup from "yup";
+import { motion } from "framer-motion";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  
+  
+  const loginSubmit = async (formdata, { resetForm }) => {
+    console.log(formdata)
+    resetForm();
+
+    const response = await fetch('http://localhost:5000/user/authenticate', {
+      method: 'POST',
+      body : JSON.stringify(formdata),
+            headers : {
+                'Content-Type' : 'application/json'
+            }
+    })
+
+    if(response.status === 200){
+      Swal.fire({
+        icon : 'success',
+        title : 'Logedin'
+      })
+
+      const data = await response.json();
+      sessionStorage.setItem('user', JSON.stringify(data));
+
+
+    }else if((response.status === 401)){
+      Swal.fire({
+        icon : 'error',
+        title : 'Login Failed'
+      })
+    }else{
+      console.log('unknown error ocuured');
+    }
+
+    // data to store in database
+  }
+
+  const myValidation = Yup.object().shape({
+    username: Yup.string().min(3, "Too short").max(10, "Too Long").required("Username Required"),
+  })
+
   return (
-    <form>
-  {/* <!-- Email input --> */}
-  <div class="form-outline mb-4">
-    <input type="email" id="form2Example1" class="form-control" />
-    <label class="form-label" for="form2Example1">Email address</label>
-  </div>
+    <motion.div
+      initial={{ scale: 0.6, x: "800%", opacity: 0 }}
+      animate={{ scale: 1, x: 0, opacity: 1 }}
+      transition={{ duration: 0.5, type: "spring" }}
+      className="col-md-6 mx-auto pt-5">
+      <div className="card">
+        <div className="card-body">
+          <h3 className="text-center">Signup Here</h3>
+          <Formik initialValues={{ email: "", password: "" }} onSubmit={loginSubmit} 
+          // validationSchema={myValidation}
+          >
+            {({ values, handleChange, handleSubmit, isSubmitting, errors }) => (
+              <form onSubmit={handleSubmit}>
+                
+                <label>Email</label>
+                <input type="text" className="form-control" name="email" value={values.email} onChange={handleChange} />
 
-  {/* <!-- Password input --> */}
-  <div class="form-outline mb-4">
-    <input type="password" id="form2Example2" class="form-control" />
-    <label class="form-label" for="form2Example2">Password</label>
-  </div>
+                <label>Password</label>
+                <input type="password" className="form-control" name="password" value={values.password} onChange={handleChange} />
 
-  {/* <!-- 2 column grid layout for inline styling --> */}
-  <div class="row mb-4">
-    <div class="col d-flex justify-content-center">
-      {/* <!-- Checkbox --> */}
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="form2Example34" checked />
-        <label class="form-check-label" for="form2Example34"> Remember me </label>
+                <button disabled={isSubmitting} type="submit" className="btn btn-primary mt-5">
+                  {isSubmitting ? <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : ""}
+                  &nbsp;&nbsp;Submit
+                </button>
+              </form>
+            )}
+          </Formik>
+        </div>
       </div>
-    </div>
-
-    <div class="col">
-      {/* <!-- Simple link --> */}
-      <a href="#!">Forgot password?</a>
-    </div>
-  </div>
-
-  {/* <!-- Submit button --> */}
-  <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
-
-  {/* <!-- Register buttons --> */}
-  <div class="text-center">
-    <p>Not a member? <a href="#!">Register</a></p>
-    <p>or sign up with:</p>
-    <button type="button" class="btn btn-primary btn-floating mx-1">
-      <i class="fab fa-facebook-f"></i>
-    </button>
-
-    <button type="button" class="btn btn-primary btn-floating mx-1">
-      <i class="fab fa-google"></i>
-    </button>
-
-    <button type="button" class="btn btn-primary btn-floating mx-1">
-      <i class="fab fa-twitter"></i>
-    </button>
-
-    <button type="button" class="btn btn-primary btn-floating mx-1">
-      <i class="fab fa-github"></i>
-    </button>
-  </div>
-</form>
+    </motion.div>
   )
 }
 
