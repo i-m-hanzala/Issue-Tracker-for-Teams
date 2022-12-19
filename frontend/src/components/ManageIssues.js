@@ -32,12 +32,22 @@ const ManageIssues = () => {
     getDataFromBackend();
   }
 
+  const delIssue = async (id) => {
+    const res = await fetch(url+'/issue/delete/'+id, {
+      method : 'DELETE'
+    })
+
+    console.log(res.status)
+    getDataFromBackend();
+
+  }
+
   const getBadge = (status) => {
-    if(status==='Pending')
+    if(status.toLowerCase()==='pending')
     return 'badge-danger'
-    else if(status==='Solved')
+    else if(status.toLowerCase()==='solved')
     return 'badge-success'
-    else if(status==='Inprogress')
+    else if(status.toLowerCase()==='inprogress')
     return 'badge-warning'
   }
 
@@ -57,19 +67,19 @@ const ManageIssues = () => {
           issueList.map((user) => (
             <tr>
               <td>{user.title}</td>
-              <td>{user.category}</td>
-              <td>{user.assignedby}</td>
-              <td>{user.assignedto}</td>
+              <td>{user.type}</td>
+              <td>{user.assignedBy}</td>
+              <td>{user.assignedTo}</td>
               <td>
               <span class={"badge rounded-pill d-inline "+getBadge(user.status)}>{user.status}</span>
               </td>
               <td>
-                <button className='btn btn-danger'>
+                <button disabled={user.status.toLowerCase() !== 'solved'} className='btn btn-danger' onClick={e => delIssue(user._id)}>
                   <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
               </td>
               <td>
-                <button className='btn btn-primary' onClick={e => updateStatus('Solved', user._id)}>
+                <button disabled={user.status.toLowerCase() === 'solved' } className='btn btn-primary' onClick={e => updateStatus('Solved', user._id)}>
                   Solve
                 </button>
 
@@ -82,8 +92,8 @@ const ManageIssues = () => {
   }
 
   return (
-    <div>
-      <h2>Issue Tracker</h2>
+    <div style={{minHeight : '80vh'}}>
+      <h3 className='text-center' style={{margin : '50px 0'}} >Manage Issue</h3>
       {displayData()}
     </div>
   )

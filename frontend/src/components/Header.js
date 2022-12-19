@@ -7,13 +7,13 @@ const Navbar = () => {
   {/* Navbar */}
   <nav
     className="navbar navbar-expand-md navbar-dark "
-    style={{ backgroundColor: "#2b0c36" }}
+    style={{ backgroundColor: "rgb(48 14 50)" }}
   >
     {/* Container wrapper */}
     <div className="container-fluid">
       {/* Navbar brand */}
       <a className="navbar-brand" href="#">
-        My React App
+        Issue Tracker App
       </a>
       {/* Toggle button */}
       <button
@@ -31,10 +31,7 @@ const Navbar = () => {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           {/* Link */}
-          <li className="nav-item">
-          <NavLink className="nav-link" to="/homepage">
-              Home</NavLink>
-          </li>
+          
           <li className="nav-item">
             <NavLink className="nav-link" to="/login">
               Login</NavLink>
@@ -43,29 +40,19 @@ const Navbar = () => {
           <NavLink className="nav-link" to="/signup">
               Sign-up</NavLink>
           </li>
+          <li className="nav-item">
+          <NavLink className="nav-link" to="/addissue">
+              Add Issue</NavLink>
+          </li>
+          <li className="nav-item">
+          <NavLink className="nav-link" to="/manageissues">
+              Manage Issue</NavLink>
+          </li>
         </ul>
         {/* Icons */}
-        <ul className="navbar-nav d-flex flex-row me-1">
-          <li className="nav-item me-3 me-lg-0">
-            <a className="nav-link" href="#">
-              <i className="fas fa-shopping-cart" />
-            </a>
-          </li>
-          <li className="nav-item me-3 me-lg-0">
-            <a className="nav-link" href="#">
-              <i className="fab fa-twitter" />
-            </a>
-          </li>
-        </ul>
+        
         {/* Search */}
-        <form className="w-auto">
-          <input
-            type="search"
-            className="form-control"
-            placeholder="Type query"
-            aria-label="Search"
-          />
-        </form>
+        
       </div>
     </div>
     {/* Container wrapper */}

@@ -6,6 +6,8 @@ import Signup from './components/Signup';
 import Header from './components/Header';
 import Addissue from './components/Addissue';
 import ManageIssues from './components/ManageIssues';
+import Footer from './components/Footer';
+
 
 
 function App() {
@@ -23,6 +25,8 @@ function App() {
         
         {/* <Route element={<NotFound/>} path="*"/> */}
       </Routes>
+      <Footer/>
+      
       
       </BrowserRouter>
     </div>

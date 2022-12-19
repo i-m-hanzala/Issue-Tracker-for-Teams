@@ -58,24 +58,27 @@ const Addissue= () => {
       className="col-md-6 mx-auto pt-5">
       <div className="card">
         <div className="card-body">
-          <h3 className="text-center">Signup Here</h3>
-          <Formik initialValues={{ title: "", type: "", assignedby: "", assignedto:"" , createdAt:new Date() }} onSubmit={userSubmit} 
+          <h3 className="text-center">Add Issue</h3>
+          <Formik initialValues={{ title: "", type: "", assignedBy: "", assignedTo:"" , createdAt:new Date() }} onSubmit={userSubmit} 
         //   validationSchema={myValidation}
           >
             {({ values, handleChange, handleSubmit, isSubmitting, errors }) => (
               <form onSubmit={handleSubmit}>
-                <label>title</label>
+                <label>Title</label>
                 <input type="text" className="form-control" name="title" value={values.title} onChange={handleChange} />
                 <p className="mb-3 message">{errors.username}</p>
 
-                <label>type</label>
+                <label>Type</label>
                 <input type="text" className="form-control" name="type" value={values.type} onChange={handleChange} />
+                <p className="mb-3 message">{errors.username}</p>
 
-                <label>assignedBy</label>
-                <input type="text" className="form-control" name="assignedby" value={values.assignedby} onChange={handleChange} />
+                <label>Assigned By</label>
+                <input type="text" className="form-control" name="assignedBy" value={values.assignedBy} onChange={handleChange} />
+                <p className="mb-3 message">{errors.username}</p>
 
-                <label>assignedto</label>
-                <input type="text" className="form-control" name="assignedto" value={values.assignedto} onChange={handleChange} />
+                <label>Assigned To</label>
+                <input type="text" className="form-control" name="assignedTo" value={values.assignedTo} onChange={handleChange} />
+                <p className="mb-3 message">{errors.username}</p>
 
                
                 <button disabled={isSubmitting} type="submit" className="btn btn-primary mt-5">
