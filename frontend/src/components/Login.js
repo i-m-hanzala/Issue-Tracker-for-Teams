@@ -51,7 +51,7 @@ const Login = () => {
 
   return (
     <motion.div
-    style={{ backgroundImage: 'url("harshbg.jpg")' , minHeight : '80vh' }}
+    style={{ backgroundImage: 'url("harshbg.jpg")' , minHeight : '100vh', backgroundSize: 'cover' }}
       initial={{ scale: 0.6, x: "800%", opacity: 0 }}
       animate={{ scale: 1, x: 0, opacity: 1 }}
       transition={{ duration: 0.5, type: "spring" }}
