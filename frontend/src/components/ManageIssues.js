@@ -64,6 +64,16 @@ const ManageIssues = () => {
     console.log(status)
   }
 
+  const delIssue = async (id) => {
+    const res = await fetch(url+'/issue/delete/'+id, {
+      method : 'DELETE'
+    })
+
+    console.log(res.status)
+    getDataFromBackend();
+
+  }
+
   const getBadge = (status) => {
     if (status.toLowerCase() === "pending") return "badge-danger"
     else if (status.toLowerCase() === "solved") return "badge-success"

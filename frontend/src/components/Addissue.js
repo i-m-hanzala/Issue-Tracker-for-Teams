@@ -72,6 +72,7 @@ const Addissue= () => {
 
                 <label>Type</label>
                 <input type="text" className="form-control" name="type" value={values.type} onChange={handleChange} />
+                <p className="mb-3 message">{errors.username}</p>
 
                 <label>Assigned By</label>
                 <input type="text" className="form-control" name="assignedby" value={values.assignedby} onChange={handleChange} />

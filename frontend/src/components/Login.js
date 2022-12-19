@@ -9,6 +9,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   
+
   const loginSubmit = async (formdata, { resetForm }) => {
     console.log(formdata)
     resetForm();
@@ -50,10 +51,14 @@ const Login = () => {
 
   return (
     <motion.div
+    style={{ backgroundImage: 'url("harshbg.jpg")' , minHeight : '80vh' }}
       initial={{ scale: 0.6, x: "800%", opacity: 0 }}
       animate={{ scale: 1, x: 0, opacity: 1 }}
       transition={{ duration: 0.5, type: "spring" }}
-      className="col-md-6 mx-auto pt-5">
+      >
+        <div className="col-md-5 mx-auto" style={{paddingTop: '200px'}}>
+          
+        
       <div className="card">
         <div className="card-body">
           <h3 className="text-center">Login Here</h3>
@@ -77,6 +82,8 @@ const Login = () => {
             )}
           </Formik>
         </div>
+      </div>
+
       </div>
     </motion.div>
   )
