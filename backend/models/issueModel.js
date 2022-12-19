@@ -1,8 +1,9 @@
-const {Schema, model} = require('../connection');
+const {Schema, model, Types} = require('../connection');
 
 const myschema = new Schema({
     title : String,
     type : String,
+    user: {type : Types.ObjectId, ref: 'users'},
     assignedBy : String,
     assignedTo : String,
     status : {type : String, default: 'pending'},

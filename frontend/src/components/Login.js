@@ -3,9 +3,11 @@ import React from "react";
 import * as Yup from "yup";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  
+
+  const navigate = useNavigate();
   
   const loginSubmit = async (formdata, { resetForm }) => {
     console.log(formdata)
@@ -27,6 +29,7 @@ const Login = () => {
 
       const data = await response.json();
       sessionStorage.setItem('user', JSON.stringify(data));
+      navigate('/addissue');
 
 
     }else if((response.status === 401)){
@@ -53,7 +56,7 @@ const Login = () => {
       className="col-md-6 mx-auto pt-5">
       <div className="card">
         <div className="card-body">
-          <h3 className="text-center">Signup Here</h3>
+          <h3 className="text-center">Login Here</h3>
           <Formik initialValues={{ email: "", password: "" }} onSubmit={loginSubmit} 
           // validationSchema={myValidation}
           >

@@ -1,11 +1,13 @@
 import { Formik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 
 const Addissue= () => {
   
+  const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem('user')))
+
   // step-1 : create function for submission
   const userSubmit = async (formdata, { resetForm, setSubmitting }) => {
     setSubmitting(true)
@@ -59,23 +61,23 @@ const Addissue= () => {
       <div className="card">
         <div className="card-body">
           <h3 className="text-center">Signup Here</h3>
-          <Formik initialValues={{ title: "", type: "", assignedby: "", assignedto:"" , createdAt:new Date() }} onSubmit={userSubmit} 
+          <Formik initialValues={{ title: "", type: "", user: currentUser._id, assignedby: "", assignedTo:"" , createdAt:new Date() }} onSubmit={userSubmit} 
         //   validationSchema={myValidation}
           >
             {({ values, handleChange, handleSubmit, isSubmitting, errors }) => (
               <form onSubmit={handleSubmit}>
-                <label>title</label>
+                <label>Issue Title</label>
                 <input type="text" className="form-control" name="title" value={values.title} onChange={handleChange} />
                 <p className="mb-3 message">{errors.username}</p>
 
-                <label>type</label>
+                <label>Type</label>
                 <input type="text" className="form-control" name="type" value={values.type} onChange={handleChange} />
 
-                <label>assignedBy</label>
+                <label>Assigned By</label>
                 <input type="text" className="form-control" name="assignedby" value={values.assignedby} onChange={handleChange} />
 
-                <label>assignedto</label>
-                <input type="text" className="form-control" name="assignedto" value={values.assignedto} onChange={handleChange} />
+                <label>Assigned To</label>
+                <input type="text" className="form-control" name="assignedTo" value={values.assignedTo} onChange={handleChange} />
 
                
                 <button disabled={isSubmitting} type="submit" className="btn btn-primary mt-5">
